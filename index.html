@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="main.css">
+	<title> Kenzuke Koike's mirror</title>
+</head>
+<body>
+
+	<h1>
+	Kenzuke Koike's <br>Mirror</br>
+	</h1>
+	
+	<h2>
+	bla	
+	</h2>
+	
+	<h3>
+	Kensuke Koike was born in 1980 in Nagoya, Japan. His research focuses on the origins of imagination and the variations of human perception. Mainly through the means of collage, photo-collage, installation and sculpture, in his artistic practice he performs a transformation of objects and images into artworks. Only after their conversion into art, they reveal their most unusual aspects and characteristics. The subjective as well as the common and public perception discovers therefore an entirely new way of looking at them.
+	</h3>
+	
+	<a id="index" href="https://ixd-supsi.github.io/avatargenerator/">INDEX</a>
+	
+	<button id="button">
+		CHANGE
+	</button>
+	<button id="cella">
+		SIZE
+	</button>
+	<script>
+
+		let capture
+		let sketch = 0;
+		let size = 20;
+
+		const tabella = []
+
+		function setup(){
+			createCanvas(500, 500)
+			capture = createCapture(VIDEO)
+			console.log("Capture, dimensione originale:")
+
+
+			capture.size(640 / 480 * height, height)
+			console.log(capture.width, capture.height)
+			capture.hide()
+		}
+		function draw(){
+			background(80)
+			
+
+			
+
+			// offsX = Margine capture-canvas
+			const offsX = (capture.width - width)/2
+
+			// Disegna la cam centrata
+			image(capture, -offsX, 0)
+
+			
+			const numCelleX = 4
+			const numCelleY = 4
+			// let cella;
+			// margine = Distanza dal lato sinistro(X)/destro(Y3
+			
+
+			if (sketch == 0){
+				sketch_1(size);
+				console.log("sketch_1")
+			}
+			else if (sketch == 1) {
+				sketch_2(size);
+				console.log("sketch_2")
+			}
+			else if (sketch == 2) {
+				sketch_3(size);
+				console.log("sketch_3")
+			}
+			else if (sketch == 3) {
+				sketch_4(size);
+				console.log("sketch_4")
+			}
+	
+
+			function sketch_1(cella){
+				const margineX = (width - numCelleX * cella) / 2
+				const margineY = (height - numCelleY * cella) / 2
+
+				// riga 1
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY 
+					const px = margineX + cella * i
+					const py = margineY
+
+					const fetta = capture.get(cx + (3 * cella), cy, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY + cella
+
+					const fetta = capture.get(cx + cella, cy + cella, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY + (2 * cella)
+
+					const fetta = capture.get(cx + (3 * cella), cy + (2 * cella), cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY + (3 * cella)
+
+					const fetta = capture.get(cx + cella, cy + (3 * cella), cella, cella)
+					image(fetta, px, py)
+				}
+			}
+			
+			function sketch_2(cella){
+				const margineX = (width - numCelleX * cella) / 2
+				const margineY = (height - numCelleY * cella) / 2
+				
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX
+					const cy = margineY + cella * i
+					const px = margineX
+					const py = margineY + cella * i
+
+					const fetta = capture.get(cx + (2 * cella), cy + cella, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX
+					const cy = margineY + cella * i
+					const px = margineX + cella
+					const py = margineY + cella * i
+
+					const fetta = capture.get(cx + (3 * cella), cy - cella, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX
+					const cy = margineY + cella * i
+					const px = margineX + (2 * cella)
+					const py = margineY + cella * i
+
+					const fetta = capture.get(cx + (4 * cella), cy + cella, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX
+					const cy = margineY + cella * i
+					const px = margineX + (3 * cella)
+					const py = margineY + cella * i
+
+					const fetta = capture.get(cx + (5 * cella), cy - cella, cella, cella)
+					image(fetta, px, py)
+				}
+			}
+			
+			function sketch_3(cella){
+				const margineX = (width - numCelleX * cella) / 2
+				const margineY = (height - numCelleY * cella) / 2
+			
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY
+
+					const fetta = capture.get((width - cx) + cella, cy, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY + cella
+
+					const fetta = capture.get(width - cx, cy + cella, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY + (2 * cella)
+
+					const fetta = capture.get(width - cx + cella, cy + (2 * cella), cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY
+					const px = margineX + cella * i
+					const py = margineY + (3 * cella)
+
+					const fetta = capture.get(width - cx, cy + (3 * cella), cella, cella)
+					image(fetta, px, py)
+				}
+			}
+
+			function sketch_4(cella){
+				const margineX = (width - numCelleX * cella) / 2
+				const margineY = (height - numCelleY * cella) / 2
+
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY + cella * i
+					const px = margineX + cella * i
+					const py = margineY 
+
+					const fetta = capture.get(cx + cella * 2, cy + (3 * cella), cella, cella)
+					image(fetta, px, py)
+				}
+		
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY + cella * i
+					const px = margineX + cella * i
+					const py = margineY + cella
+
+					const fetta = capture.get(cx + cella * 2, cy + (2 * cella), cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY + cella * i
+					const px = margineX + cella * i
+					const py = margineY + (2 * cella)
+
+					const fetta = capture.get(cx + cella * 2, cy + cella, cella, cella)
+					image(fetta, px, py)
+				}
+				for (let i=0; i<numCelleX; i++) {
+					const cx = margineX + cella * i
+					const cy = margineY + cella * i
+					const px = margineX + cella * i
+					const py = margineY + (3 * cella)
+
+					const fetta = capture.get(cx + cella * 2, cy ,cella, cella)
+					image(fetta, px, py)
+				}
+			}
+			
+			
+			
+			let button = document.getElementById("button")
+			let button_cella = document.getElementById("cella")
+
+
+			button.addEventListener("click",press_button)
+			button_cella.addEventListener("click",increase_cella)
+		
+		}
+		
+		function keyPressed(){
+			if (key == 's') {
+				save(Date.now() + '.png')
+			}
+		}
+
+
+		function press_button(){
+			console.log(sketch)
+			
+			// reset
+			if (sketch == 3){
+				sketch = 0
+			}
+			else {
+				sketch += 1;
+			}
+		}
+
+		function increase_cella(){			
+			if (size == 50){
+				size = 20
+			}
+			else {
+				size += 10;
+			}
+			console.log(size)
+		}
+		 
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+</body>
+</html>
